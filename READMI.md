@@ -1,0 +1,1 @@
+Just add `web_panel.html` to your web panel and enjoy!
