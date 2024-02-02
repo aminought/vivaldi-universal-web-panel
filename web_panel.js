@@ -97,6 +97,32 @@ function showHTMLWithUrl(input, root) {
     console.log('html with url rendered');
 }
 
+function addEventListeners(inputField) {
+    console.log('adding event listeners...');
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') {
+            inputField.focus();
+        }
+    });
+    console.log('event listeners added');
+}
+
+function insertInput() {
+    console.log('inserting input field...');
+    inputHtml = `
+        <input type="text" id="input" placeholder="Paste your link or html"
+        autofocus oninput="execute()" style="width: 100%; padding: 12px 20px;
+        margin: 8px 0; display: inline-block; border: 1px solid #ccc;
+        border-radius: 4px; box-sizing: border-box; position: fixed;
+        top: 0; left: 0; z-index: 999999;"><br>
+    `
+    document.body.insertAdjacentHTML('afterbegin', inputHtml);
+    var inputField = document.getElementById('input');
+    inputField.focus();
+    addEventListeners(inputField);
+    console.log('input field inserted');
+}
+
 function handleInput(input) {
     console.log('handling input...');
     var root = document.documentElement;
@@ -132,30 +158,4 @@ function execute() {
         }
     }
     console.log('executed');
-}
-
-function addEventListeners(inputField) {
-    console.log('adding event listeners...');
-    document.addEventListener('visibilitychange', function () {
-        if (document.visibilityState === 'visible') {
-            inputField.focus();
-        }
-    });
-    console.log('event listeners added');
-}
-
-function insertInput() {
-    console.log('inserting input field...');
-    inputHtml = `
-        <input type="text" id="input" placeholder="Paste your link or html"
-        autofocus oninput="execute()" style="width: 100%; padding: 12px 20px;
-        margin: 8px 0; display: inline-block; border: 1px solid #ccc;
-        border-radius: 4px; box-sizing: border-box; position: fixed;
-        top: 0; left: 0; z-index: 999999;"><br>
-    `
-    document.body.insertAdjacentHTML('afterbegin', inputHtml);
-    var inputField = document.getElementById('input');
-    inputField.focus();
-    addEventListeners(inputField);
-    console.log('input field inserted');
 }
