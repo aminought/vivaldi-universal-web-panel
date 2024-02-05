@@ -152,8 +152,7 @@
 
         beginWebviewObservation(webview);
         const universalInputToolbar = createUniversalInputToolbar(panel);
-        const content = panel.querySelector(".webpanel-header");
-        panel.insertBefore(universalInputToolbar, content);
+        panel.appendChild(universalInputToolbar);
     }
 
     const PANEL_CHANGE_OBSERVER = new MutationObserver(records => {
