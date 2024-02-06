@@ -89,6 +89,7 @@
                 value.startsWith('http://') ||
                 value.startsWith('https://') ||
                 value.startsWith('file://') ||
+                value.startsWith('vivaldi://') ||
                 value === 'about::blank') {
                 openUrl(value, panel, webview);
             } else if (value.startsWith('(()') && value.endsWith(')()')) {
