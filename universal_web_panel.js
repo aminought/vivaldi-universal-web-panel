@@ -1,21 +1,23 @@
 (function universal_web_panel() {
   "use strict";
 
-  const BUTTON_NUMBER = 0;
-  const WEBPANEL_NUMBER = 0;
+  const PANEL_ID = "";
 
   const DEFAULT_TITLE = "Universal Web Panel";
   const DEFAULT_ICON =
     "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAyMC40OCAyMC40OCI+PGcgc3R5bGU9InN0cm9rZS13aWR0aDoxLjAwMDg2O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSI+PHBhdGggZmlsbD0iI2Y5YzBjMCIgZD0iTTI0OS41IDcwMC42YzE0LjUgMTM1LjUgMTMyLjYgMjQxLjEgMjc2IDI0MS4xczI2MS41LTEwNS42IDI3Ni0yNDEuMXoiIHN0eWxlPSJzdHJva2Utd2lkdGg6MS4wMDA4NjtzdHJva2UtZGFzaGFycmF5Om5vbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0uODk0IC0uOTI0KSBzY2FsZSguMDIxNzQpIi8+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTUxMiA5NTcuM2MtNzkuNiAwLTE1NC41LTI4LjctMjEwLjgtODAuOC01Ni41LTUyLjItODcuNi0xMjEuNy04Ny42LTE5NS43IDAtNTkuNyAyMC4yLTExNi41IDU4LjQtMTY0LjMgMzYuMi00NS4zIDg1LjQtNzguOCAxNDIuNi05Ny4xVjIwNi4xaC00Ni4xYy0xMS4yIDAtMjAuNC05LjEtMjAuNC0yMC40di0xNy4xYzAtMTEuMiA5LjEtMjAuNCAyMC40LTIwLjRoMjg3LjJjMTEuMiAwIDIwLjQgOS4xIDIwLjQgMjAuNHYxNy4xYzAgMTEuMi05LjEgMjAuNC0yMC40IDIwLjRoLTQ2LjF2MjEzLjRjNTcuMSAxOC4zIDEwNi4zIDUxLjggMTQyLjYgOTcuMSAzOC4yIDQ3LjggNTguNCAxMDQuNiA1OC40IDE2NC4zIDAgNzQtMzEuMSAxNDMuNS04Ny42IDE5NS43LTU2LjUgNTItMTMxLjQgODAuNy0yMTEgODAuN3pNMzY4LjQgMTYzLjJjLTMgMC01LjQgMi40LTUuNCA1LjR2MTcuMWMwIDMgMi40IDUuNCA1LjQgNS40aDYxLjF2MjM5LjVsLTUuMyAxLjZjLTU2LjUgMTctMTA1LjEgNDkuNC0xNDAuNSA5My43LTM2IDQ1LjEtNTUuMSA5OC43LTU1LjEgMTU0LjkgMCA2OS43IDI5LjQgMTM1LjMgODIuOCAxODQuN0MzNjUgOTE1IDQzNi4yIDk0Mi4zIDUxMiA5NDIuM3MxNDcuMS0yNy4zIDIwMC42LTc2LjhjNTMuNC00OS40IDgyLjgtMTE1IDgyLjgtMTg0LjcgMC01Ni4yLTE5LTEwOS44LTU1LjEtMTU0LjktMzUuNC00NC40LTg0LTc2LjgtMTQwLjUtOTMuN2wtNS4zLTEuNlYxOTEuMWg2MS4xYzMgMCA1LjQtMi40IDUuNC01LjR2LTE3LjFjMC0zLTIuNC01LjQtNS40LTUuNHoiIHN0eWxlPSJzdHJva2Utd2lkdGg6MS4wMDA4NjtzdHJva2UtZGFzaGFycmF5Om5vbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0uODk0IC0uOTI0KSBzY2FsZSguMDIxNzQpIi8+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTIyMC43IDY3Ni44aDU4MS45djhIMjIwLjdabTE5Mi4zLTQ4NmgzOS42djhINDEzWm04Mi41IDBoMTA2LjF2OEg0OTUuNVoiIHN0eWxlPSJzdHJva2Utd2lkdGg6MS4wMDA4NjtzdHJva2UtZGFzaGFycmF5Om5vbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0uODk0IC0uOTI0KSBzY2FsZSguMDIxNzQpIi8+PHBhdGggZmlsbD0iI2NlMDIwMiIgZD0iTTQ1Mi43IDY0NS43Yy0xNCAwLTI1LjQtMTEuNC0yNS40LTI1LjQgMC0xNCAxMS40LTI1LjQgMjUuNC0yNS40IDE0IDAgMjUuNCAxMS40IDI1LjQgMjUuNCAwIDE0LTExLjQgMjUuNC0yNS40IDI1LjR6bTAtNDIuOWMtOS42IDAtMTcuNCA3LjgtMTcuNCAxNy40IDAgOS42IDcuOCAxNy40IDE3LjQgMTcuNCA5LjYgMCAxNy40LTcuOCAxNy40LTE3LjQgMC05LjYtNy44LTE3LjQtMTcuNC0xNy40em0xMTguOS00NmMtMjcuNiAwLTUwLjEtMjIuNS01MC4xLTUwLjFzMjIuNS01MC4xIDUwLjEtNTAuMSA1MC4xIDIyLjUgNTAuMSA1MC4xLTIyLjUgNTAuMS01MC4xIDUwLjF6bTAtOTIuMmMtMjMuMiAwLTQyLjEgMTguOS00Mi4xIDQyLjEgMCAyMy4yIDE4LjkgNDIuMSA0Mi4xIDQyLjEgMjMuMiAwIDQyLjEtMTguOSA0Mi4xLTQyLjEgMC0yMy4yLTE4LjktNDIuMS00Mi4xLTQyLjF6bS04MC40LTE0Ny45Yy0xNyAwLTMwLjgtMTMuOC0zMC44LTMwLjhzMTMuOC0zMC44IDMwLjgtMzAuOCAzMC44IDEzLjggMzAuOCAzMC44LTEzLjggMzAuOC0zMC44IDMwLjh6bTAtNTMuNmMtMTIuNiAwLTIyLjggMTAuMi0yMi44IDIyLjggMCAxMi42IDEwLjIgMjIuOCAyMi44IDIyLjggMTIuNiAwIDIyLjgtMTAuMiAyMi44LTIyLjggMC0xMi42LTEwLjItMjIuOC0yMi44LTIyLjh6bTUyLTE1MGMtMTIgMC0yMS43LTkuNy0yMS43LTIxLjdzOS43LTIxLjcgMjEuNy0yMS43IDIxLjcgOS43IDIxLjcgMjEuNy05LjcgMjEuNy0yMS43IDIxLjd6bTAtMzUuNGMtNy41IDAtMTMuNyA2LjEtMTMuNyAxMy43czYuMSAxMy43IDEzLjcgMTMuNyAxMy43LTYuMSAxMy43LTEzLjctNi4xLTEzLjctMTMuNy0xMy43eiIgc3R5bGU9InN0cm9rZS13aWR0aDoxLjAwMDg2O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLS44OTQgLS45MjQpIHNjYWxlKC4wMjE3NCkiLz48L2c+PC9zdmc+";
 
   class UWP {
-    #panel;
+    #panelStackChangeObserver;
     #panelChangeObserver;
 
-    constructor(panel) {
-      this.#panel = panel;
-      this.#panelChangeObserver = this.#createPanelChangeObserver();
-      this.#register();
+    constructor() {
+      if (this.#panel) {
+        this.#panelChangeObserver = this.#createPanelChangeObserver();
+        this.#register();
+      } else {
+        this.#panelStackChangeObserver = this.#createPanelStackChangeObserver();
+      }
     }
 
     #register() {
@@ -31,15 +33,23 @@
       this.#focusInput();
       if (this.#isBlank) {
         this.#title = DEFAULT_TITLE;
-        this.#panelButtonImg = DEFAULT_ICON;
+        this.#buttonImg = DEFAULT_ICON;
       }
     }
 
     #registerInvisible() {
-      this.#panelButtonImg = this.#isBlank ? DEFAULT_ICON : this.#webview.src;
+      this.#buttonImg = this.#isBlank ? DEFAULT_ICON : this.#webview.src;
     }
 
     // listeners
+
+    #createPanelStackChangeObserver() {
+      const panelStackChangeObserver = new MutationObserver((records) => {
+        records.forEach(() => this.#handlePanelStackChange());
+      });
+      panelStackChangeObserver.observe(this.#panel, { childList: true });
+      return panelStackChangeObserver;
+    }
 
     #createPanelChangeObserver() {
       const panelChangeObserver = new MutationObserver((records) => {
@@ -61,9 +71,9 @@
         this.#showWebview();
         if (this.#isBlank) {
           this.#title = DEFAULT_TITLE;
-          this.#panelButtonImg = DEFAULT_ICON;
+          this.#buttonImg = DEFAULT_ICON;
         } else {
-          this.#panelButtonImg = this.#webview.src;
+          this.#buttonImg = this.#webview.src;
         }
       });
     }
@@ -111,6 +121,15 @@
 
     // getters
 
+    get #panel() {
+      return document.querySelector(`webview[tab_id^="${PANEL_ID}"]`)
+        ?.parentElement?.parentElement;
+    }
+
+    get #button() {
+      return document.querySelector(`button[name="${PANEL_ID}"]`);
+    }
+
     get #content() {
       return this.#panel.querySelector(".webpanel-content");
     }
@@ -131,16 +150,8 @@
       return this.#panel.querySelector(".universal-input");
     }
 
-    get #buttonToolbar() {
-      return this.#panel.querySelectorAll("button.button-toolbar");
-    }
-
-    get #panelButtonImg() {
-      const panelButtonToolbar = document.querySelectorAll(
-        ".button-toolbar-webpanel",
-      );
-      const panelButton = panelButtonToolbar[BUTTON_NUMBER];
-      return panelButton.querySelector("img");
+    get #buttonImg() {
+      return this.#button.querySelector("img");
     }
 
     get #isVisible() {
@@ -157,13 +168,13 @@
       setTimeout(() => (this.#title.innerText = title), 100);
     }
 
-    set #panelButtonImg(url) {
-      this.#panelButtonImg.removeAttribute("srcset");
+    set #buttonImg(url) {
+      this.#buttonImg.removeAttribute("srcset");
       const src =
         url && (url.startsWith("http://") || url.startsWith("https://"))
           ? `chrome://favicon/size/16@1x/${url}`
           : url;
-      this.#panelButtonImg.setAttribute("src", src);
+      this.#buttonImg.setAttribute("src", src);
     }
 
     // handlers
@@ -204,7 +215,14 @@
       }
       this.#htmlview.innerHTML = html;
       this.#title = DEFAULT_TITLE;
-      this.#panelButtonImg = DEFAULT_ICON;
+      this.#buttonImg = DEFAULT_ICON;
+    }
+
+    #handlePanelStackChange() {
+      if (this.#panel) {
+        this.#panelChangeObserver = this.#createPanelChangeObserver();
+        this.#register();
+      }
     }
 
     #handlePanelChange() {
@@ -239,15 +257,10 @@
     return document.querySelector(".webpanel-stack");
   }
 
-  function getPanel(panels) {
-    return panels.children[WEBPANEL_NUMBER];
-  }
-
   function initMod() {
     const panels = getPanels();
     if (panels) {
-      const panel = getPanel(panels);
-      window.uwp = new UWP(panel);
+      window.uwp = new UWP();
     } else {
       setTimeout(initMod, 500);
     }
