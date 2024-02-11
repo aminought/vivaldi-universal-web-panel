@@ -47,7 +47,7 @@
       const panelStackChangeObserver = new MutationObserver((records) => {
         records.forEach(() => this.#handlePanelStackChange());
       });
-      panelStackChangeObserver.observe(this.#panel, { childList: true });
+      panelStackChangeObserver.observe(this.#panelStack, { childList: true });
       return panelStackChangeObserver;
     }
 
@@ -120,6 +120,10 @@
     }
 
     // getters
+
+    get #panelStack() {
+      return document.querySelector(".webpanel-stack");
+    }
 
     get #panel() {
       return document.querySelector(`webview[tab_id^="${PANEL_ID}"]`)
