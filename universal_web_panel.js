@@ -136,8 +136,8 @@
       input.style.height = TOOLBAR_HEIGHT;
       input.style.padding = "10px";
       input.style.borderRadius = INPUT_BORDER_RADIUS;
-      input.style.outline = "none";
-      input.style.borderWidth = "0px";
+      input.style.outline = 'none';
+      input.style.borderWidth = '0px';
       return input;
     }
 
