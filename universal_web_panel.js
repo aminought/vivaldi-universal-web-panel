@@ -9,6 +9,9 @@
   const USE_DEFAULT_ICON = false;
   const FAVORITES = []; // [{caption: "Vivaldi", url: "https://vivaldi.net"}, ...]
 
+  const TOOLBAR_HEIGHT = "28px";
+  const INPUT_BORDER_RADIUS = "10px";
+
   class UWP {
     #panelStackChangeObserver;
     #panelChangeObserver;
@@ -114,12 +117,10 @@
 
     #createEmptyUwpToolbar() {
       const uwpToolbar = document.createElement("div");
-      uwpToolbar.className =
-        "uwp-toolbar toolbar-default full-width";
+      uwpToolbar.className = "uwp-toolbar toolbar-default full-width";
       uwpToolbar.width = "100%";
-      uwpToolbar.style.height = "28px";
+      uwpToolbar.style.height = TOOLBAR_HEIGHT;
       uwpToolbar.style.width = "100%";
-      uwpToolbar.style.padding = "0 2px";
       uwpToolbar.style.marginTop = "2px";
       uwpToolbar.style.display = "flex";
       uwpToolbar.style.gap = "2px";
@@ -132,35 +133,38 @@
       input.type = "text";
       input.placeholder = "Paste your link, html or javascript";
       input.style.flex = 3;
-      input.style.height = "28px";
+      input.style.height = TOOLBAR_HEIGHT;
       input.style.padding = "10px";
+      input.style.borderRadius = INPUT_BORDER_RADIUS;
+      input.style.outline = "none";
+      input.style.borderWidth = "0px";
       return input;
     }
 
     #createFavoritesSelect() {
       const favoritesSelect = document.createElement("select");
       favoritesSelect.className = "uwp-favorites-select";
-      favoritesSelect.style.width = '28px';
-      favoritesSelect.style.padding = '5px';
-      favoritesSelect.style.backgroundColor = 'transparent';
-      favoritesSelect.style.backgroundImage = 'none';
-      favoritesSelect.style.borderWidth = '0px';
-      favoritesSelect.style.outline = 'none';
+      favoritesSelect.style.width = "25px";
+      favoritesSelect.style.padding = "5px";
+      favoritesSelect.style.backgroundColor = "transparent";
+      favoritesSelect.style.backgroundImage = "none";
+      favoritesSelect.style.borderWidth = "0px";
+      favoritesSelect.style.outline = "none";
 
       // Create a default option
       const defaultOption = document.createElement("option");
       defaultOption.textContent = "🤍";
       defaultOption.selected = true;
       defaultOption.disabled = true;
-      defaultOption.style.backgroundColor = 'var(--colorBg)';
-      defaultOption.setAttribute('value', 0);
+      defaultOption.style.backgroundColor = "var(--colorBg)";
+      defaultOption.setAttribute("value", 0);
       favoritesSelect.appendChild(defaultOption);
 
       FAVORITES.forEach((favorite) => {
         const option = document.createElement("option");
         option.value = favorite.url;
         option.textContent = favorite.caption;
-        option.style.backgroundColor = 'var(--colorBg)';
+        option.style.backgroundColor = "var(--colorBg)";
         favoritesSelect.appendChild(option);
       });
 
