@@ -328,18 +328,10 @@
     }
   }
 
-  function getPanels() {
-    return document.querySelector(".webpanel-stack");
-  }
-
-  function initMod() {
-    const panels = getPanels();
-    if (panels) {
-      window.uwp = new UWP();
-    } else {
-      setTimeout(initMod, 500);
-    }
-  }
-
-  setTimeout(initMod, 500);
+  var interval = setInterval(() => {
+      if (document.querySelector('#browser')) {
+        window.uwp = new UWP();
+          clearInterval(interval);
+      }
+  }, 100);
 })();
