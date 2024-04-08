@@ -1,28 +1,100 @@
 (function universal_web_panel() {
   "use strict";
 
-  const PANEL_ID = "";
+  const PANEL_ID = "WEBPANEL_uwp00000-0000-0000-0000-000000000000";
+  const TITLE = "Universal Web Panel";
 
-  const DEFAULT_TITLE = "Universal Web Panel";
-  const DEFAULT_ICON =
-    "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAyMC40OCAyMC40OCI+PGcgc3R5bGU9InN0cm9rZS13aWR0aDoxLjAwMDg2O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSI+PHBhdGggZmlsbD0iI2Y5YzBjMCIgZD0iTTI0OS41IDcwMC42YzE0LjUgMTM1LjUgMTMyLjYgMjQxLjEgMjc2IDI0MS4xczI2MS41LTEwNS42IDI3Ni0yNDEuMXoiIHN0eWxlPSJzdHJva2Utd2lkdGg6MS4wMDA4NjtzdHJva2UtZGFzaGFycmF5Om5vbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0uODk0IC0uOTI0KSBzY2FsZSguMDIxNzQpIi8+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTUxMiA5NTcuM2MtNzkuNiAwLTE1NC41LTI4LjctMjEwLjgtODAuOC01Ni41LTUyLjItODcuNi0xMjEuNy04Ny42LTE5NS43IDAtNTkuNyAyMC4yLTExNi41IDU4LjQtMTY0LjMgMzYuMi00NS4zIDg1LjQtNzguOCAxNDIuNi05Ny4xVjIwNi4xaC00Ni4xYy0xMS4yIDAtMjAuNC05LjEtMjAuNC0yMC40di0xNy4xYzAtMTEuMiA5LjEtMjAuNCAyMC40LTIwLjRoMjg3LjJjMTEuMiAwIDIwLjQgOS4xIDIwLjQgMjAuNHYxNy4xYzAgMTEuMi05LjEgMjAuNC0yMC40IDIwLjRoLTQ2LjF2MjEzLjRjNTcuMSAxOC4zIDEwNi4zIDUxLjggMTQyLjYgOTcuMSAzOC4yIDQ3LjggNTguNCAxMDQuNiA1OC40IDE2NC4zIDAgNzQtMzEuMSAxNDMuNS04Ny42IDE5NS43LTU2LjUgNTItMTMxLjQgODAuNy0yMTEgODAuN3pNMzY4LjQgMTYzLjJjLTMgMC01LjQgMi40LTUuNCA1LjR2MTcuMWMwIDMgMi40IDUuNCA1LjQgNS40aDYxLjF2MjM5LjVsLTUuMyAxLjZjLTU2LjUgMTctMTA1LjEgNDkuNC0xNDAuNSA5My43LTM2IDQ1LjEtNTUuMSA5OC43LTU1LjEgMTU0LjkgMCA2OS43IDI5LjQgMTM1LjMgODIuOCAxODQuN0MzNjUgOTE1IDQzNi4yIDk0Mi4zIDUxMiA5NDIuM3MxNDcuMS0yNy4zIDIwMC42LTc2LjhjNTMuNC00OS40IDgyLjgtMTE1IDgyLjgtMTg0LjcgMC01Ni4yLTE5LTEwOS44LTU1LjEtMTU0LjktMzUuNC00NC40LTg0LTc2LjgtMTQwLjUtOTMuN2wtNS4zLTEuNlYxOTEuMWg2MS4xYzMgMCA1LjQtMi40IDUuNC01LjR2LTE3LjFjMC0zLTIuNC01LjQtNS40LTUuNHoiIHN0eWxlPSJzdHJva2Utd2lkdGg6MS4wMDA4NjtzdHJva2UtZGFzaGFycmF5Om5vbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0uODk0IC0uOTI0KSBzY2FsZSguMDIxNzQpIi8+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTIyMC43IDY3Ni44aDU4MS45djhIMjIwLjdabTE5Mi4zLTQ4NmgzOS42djhINDEzWm04Mi41IDBoMTA2LjF2OEg0OTUuNVoiIHN0eWxlPSJzdHJva2Utd2lkdGg6MS4wMDA4NjtzdHJva2UtZGFzaGFycmF5Om5vbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0uODk0IC0uOTI0KSBzY2FsZSguMDIxNzQpIi8+PHBhdGggZmlsbD0iI2NlMDIwMiIgZD0iTTQ1Mi43IDY0NS43Yy0xNCAwLTI1LjQtMTEuNC0yNS40LTI1LjQgMC0xNCAxMS40LTI1LjQgMjUuNC0yNS40IDE0IDAgMjUuNCAxMS40IDI1LjQgMjUuNCAwIDE0LTExLjQgMjUuNC0yNS40IDI1LjR6bTAtNDIuOWMtOS42IDAtMTcuNCA3LjgtMTcuNCAxNy40IDAgOS42IDcuOCAxNy40IDE3LjQgMTcuNCA5LjYgMCAxNy40LTcuOCAxNy40LTE3LjQgMC05LjYtNy44LTE3LjQtMTcuNC0xNy40em0xMTguOS00NmMtMjcuNiAwLTUwLjEtMjIuNS01MC4xLTUwLjFzMjIuNS01MC4xIDUwLjEtNTAuMSA1MC4xIDIyLjUgNTAuMSA1MC4xLTIyLjUgNTAuMS01MC4xIDUwLjF6bTAtOTIuMmMtMjMuMiAwLTQyLjEgMTguOS00Mi4xIDQyLjEgMCAyMy4yIDE4LjkgNDIuMSA0Mi4xIDQyLjEgMjMuMiAwIDQyLjEtMTguOSA0Mi4xLTQyLjEgMC0yMy4yLTE4LjktNDIuMS00Mi4xLTQyLjF6bS04MC40LTE0Ny45Yy0xNyAwLTMwLjgtMTMuOC0zMC44LTMwLjhzMTMuOC0zMC44IDMwLjgtMzAuOCAzMC44IDEzLjggMzAuOCAzMC44LTEzLjggMzAuOC0zMC44IDMwLjh6bTAtNTMuNmMtMTIuNiAwLTIyLjggMTAuMi0yMi44IDIyLjggMCAxMi42IDEwLjIgMjIuOCAyMi44IDIyLjggMTIuNiAwIDIyLjgtMTAuMiAyMi44LTIyLjggMC0xMi42LTEwLjItMjIuOC0yMi44LTIyLjh6bTUyLTE1MGMtMTIgMC0yMS43LTkuNy0yMS43LTIxLjdzOS43LTIxLjcgMjEuNy0yMS43IDIxLjcgOS43IDIxLjcgMjEuNy05LjcgMjEuNy0yMS43IDIxLjd6bTAtMzUuNGMtNy41IDAtMTMuNyA2LjEtMTMuNyAxMy43czYuMSAxMy43IDEzLjcgMTMuNyAxMy43LTYuMSAxMy43LTEzLjctNi4xLTEzLjctMTMuNy0xMy43eiIgc3R5bGU9InN0cm9rZS13aWR0aDoxLjAwMDg2O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLS44OTQgLS45MjQpIHNjYWxlKC4wMjE3NCkiLz48L2c+PC9zdmc+";
   const USE_DEFAULT_ICON = false;
   const FAVORITES = []; // [{caption: "Vivaldi", url: "https://vivaldi.net"}, ...]
+
+  const ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="padding: 4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  const ICON_HTML = `<span class="button-icon">${ICON_SVG}</span>`;
+  const ICON_DATA_URL = `data:image/svg+xml, ${ICON_SVG}`;
+
+  const HTML = '<title>Universal Web Panel</title>';
+
+  const STYLE = `
+    button[name="${PANEL_ID}"] img {
+      display:none;
+    }
+
+    button[name="${PANEL_ID}"]:before {
+      width: 16px;
+      height: 16px;
+      content: "";
+      background-color: var(--colorFg);
+      -webkit-mask-box-image: url('${JSON.stringify(ICON_DATA_URL)}');
+    }
+
+    .color-behind-tabs-off .toolbar-mainbar button[name="${PANEL_ID}"]:before {
+      background-color: var(--colorAccentFg);
+    }
+
+    .button-toolbar:active button[name="${PANEL_ID}"]:before {
+      transform: scale(0.9);
+    }
+  `;
 
   const TOOLBAR_HEIGHT = "28px";
   const INPUT_BORDER_RADIUS = "10px";
 
+  const TOOLBARS = [
+    'vivaldi.toolbars.panel',
+    'vivaldi.toolbars.navigation',
+    'vivaldi.toolbars.status',
+    'vivaldi.toolbars.mail',
+    'vivaldi.toolbars.mail_message',
+    'vivaldi.toolbars.mail_composer'
+  ];
+
+  class Preferences {
+    async get(path) {
+      return await vivaldi.prefs.get(path);
+    }
+
+    async set({path, value}) {
+      await vivaldi.prefs.set({path, value});
+    }
+
+    async getWebpanels() {
+      return await vivaldi.prefs.get('vivaldi.panels.web.elements');
+    }
+
+    async setWebpanels(webpanels) {
+      await vivaldi.prefs.set({path: 'vivaldi.panels.web.elements', value: webpanels});
+    }
+
+    async getPanelToolbar() {
+      return await vivaldi.prefs.get('vivaldi.toolbars.panel');
+    }
+
+    async setPanelToolbar(toolbar) {
+      await vivaldi.prefs.set({path: 'vivaldi.toolbars.panel', value: toolbar});
+    }
+
+    async addOnWebpanelsChangedListner(cb) {
+      vivaldi.prefs.onChanged.addListener(async event => {
+        if (event.path === 'vivaldi.panels.web.elements') {
+          await cb();
+        }
+      });
+    }
+  };
+
   class UWP {
-    #panelStackChangeObserver;
-    #panelChangeObserver;
+    prefs = new Preferences();
+    #observers = [];
 
     constructor() {
-      if (this.#panel) {
-        this.#panelChangeObserver = this.#createPanelChangeObserver();
-        this.#register();
-      } else {
-        this.#panelStackChangeObserver = this.#createPanelStackChangeObserver();
-      }
+      // this.#addStyle();
+      this.#createWebPanel().then(() => {
+        if (this.#panel) {
+          this.#observers.push(this.#createPanelChangeObserver());
+          this.#register();
+        } else {
+          this.#observers.push(this.#createPanelStackChangeObserver());
+        }
+      });
     }
 
     #register() {
@@ -31,23 +103,23 @@
 
     #registerVisible() {
       if (!this.#input) {
-        this.createUwpToolbar();
+        this.#createUwpToolbar();
         this.#addInputEvents();
         this.#addWebviewEvents();
         this.#addFavoritesSelectEvents();
       }
       this.#focusInput();
       if (this.#isBlank) {
-        this.#title = DEFAULT_TITLE;
-        this.#buttonImg = DEFAULT_ICON;
+        this.#title = TITLE;
+        this.#buttonImg = ICON_DATA_URL;
       } else if (USE_DEFAULT_ICON) {
-        this.#buttonImg = DEFAULT_ICON;
+        this.#buttonImg = ICON_DATA_URL;
       }
     }
 
     #registerInvisible() {
       this.#buttonImg =
-        this.#isBlank || USE_DEFAULT_ICON ? DEFAULT_ICON : this.#webview.src;
+        this.#isBlank || USE_DEFAULT_ICON ? ICON_DATA_URL : this.#webview.src;
     }
 
     // listeners
@@ -90,10 +162,10 @@
       this.#webview.addEventListener("contentload", () => {
         this.#showWebview();
         if (this.#isBlank) {
-          this.#title = DEFAULT_TITLE;
-          this.#buttonImg = DEFAULT_ICON;
+          this.#title = TITLE;
+          this.#buttonImg = ICON_DATA_URL;
         } else if (USE_DEFAULT_ICON) {
-          this.#buttonImg = DEFAULT_ICON;
+          this.#buttonImg = ICON_DATA_URL;
         } else {
           this.#buttonImg = this.#webview.src;
         }
@@ -102,7 +174,83 @@
 
     // builders
 
-    createUwpToolbar() {
+    #createStyle() {
+        const style = document.createElement('style');
+        style.innerHTML = STYLE;
+        return style;
+    }
+
+    async #createWebPanel() {
+      const toolbarElements = document.querySelectorAll('.toolbar');
+      for (toolbar of toolbarElements) {
+        const observer = new MutationObserver(() => {
+            const button = toolbar.querySelector(`button[name="${PANEL_ID}"]`);
+            if (button) button.innerHTML = ICON_HTML;
+        });
+        observer.observe(toolbar, {childList: true});
+        this.#observers.push(observer);
+      }
+
+      const browser = document.querySelector('#browser');
+      const browserObserver = new MutationObserver(() => {
+          const button = document.querySelector(`.toolbar-editor button[name="${PANEL_ID}"]`);
+          if (button) button.innerHTML = ICON_HTML;
+      });
+      browserObserver.observe(browser, {childList: true});
+      this.#observers.push(browserObserver);
+
+      const webpanels = await this.prefs.getWebpanels()
+      var webpanel = webpanels.find((p) => p.id == PANEL_ID);
+      if (!webpanel) {
+        webpanel = {
+          activeUrl: 'data:text/html,' + encodeURIComponent(HTML),
+          faviconUrl: ICON_DATA_URL,
+          faviconUrlValid: true,
+          id: PANEL_ID,
+          mobileMode: true,
+          origin: 'user',
+          resizable: false,
+          title: TITLE,
+          url: 'vivaldi://universal-web-panel',
+          width: -1,
+          zoom: 1
+        }
+        webpanels.push(webpanel);
+        await this.prefs.setWebpanels(webpanels);
+      }
+      
+      const toolbars = await Promise.all(TOOLBARS.map(path => this.prefs.get(path)));
+      const hasUwp = toolbars.some(toolbar => toolbar.some(id => id === PANEL_ID));
+
+      if (!hasUwp) {
+        const panelToolbar = toolbars[0];
+        const panelIndex = panelToolbar.findIndex(panel => panel.startsWith('WEBPANEL_'));
+        panelToolbar.splice(panelIndex, 0, PANEL_ID);
+        await this.prefs.setPanelToolbar(panelToolbar);
+      }
+
+      const button = document.querySelector(`button[name="${PANEL_ID}"]`);
+      if (button) button.innerHTML = ICON_HTML;
+    }
+
+    async reset() {
+      var webpanels = await this.prefs.getWebpanels();
+      var webpanel = webpanels.find((p) => p.id == PANEL_ID);
+      if (webpanel) {
+        webpanels = webpanels.filter(w => w.id !== PANEL_ID);
+        await this.prefs.setWebpanels(webpanels);
+      }
+
+      for (const path of TOOLBARS) {
+        var toolbar = await this.prefs.get(path);
+        if (toolbar.includes(PANEL_ID)) {
+          toolbar = toolbar.filter(id => id !== PANEL_ID);
+          await this.prefs.set({path: path, value: toolbar});
+        }
+      }
+    }
+
+    #createUwpToolbar() {
       const uwpToolbar = this.#createEmptyUwpToolbar();
       const input = this.#createInput();
       uwpToolbar.appendChild(input);
@@ -180,6 +328,10 @@
     }
 
     // getters
+
+    get #head() {
+      return document.querySelector("head");
+    }
 
     get #panelStack() {
       return document.querySelector(".webpanel-stack");
@@ -285,13 +437,13 @@
         this.#content.appendChild(htmlview);
       }
       this.#htmlview.innerHTML = html;
-      this.#title = DEFAULT_TITLE;
-      this.#buttonImg = DEFAULT_ICON;
+      this.#title = TITLE;
+      this.#buttonImg = ICON_DATA_URL;
     }
 
     #handlePanelStackChange() {
       if (this.#panel) {
-        this.#panelChangeObserver = this.#createPanelChangeObserver();
+        this.#observers.push(this.#createPanelChangeObserver());
         this.#register();
       }
     }
@@ -303,6 +455,10 @@
     }
 
     // actions
+
+    #addStyle() {
+        this.#head.appendChild(this.#createStyle());
+    }
 
     #showWebview() {
       if (this.#webview.style.display === "none") {
@@ -331,7 +487,7 @@
   var interval = setInterval(() => {
       if (document.querySelector('#browser')) {
         window.uwp = new UWP();
-          clearInterval(interval);
+        clearInterval(interval);
       }
   }, 100);
 })();
